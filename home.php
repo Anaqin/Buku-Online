@@ -1,58 +1,67 @@
-<h1 class="mt-4">Dashboard</h1>
-                        <ol class="breadcrumb mb-4">
-                            <li class="breadcrumb-item active">Dashboard</li>
-                        </ol>
-                        <div class="row">
-                            <div class="col-xl-3 col-md-6">
-                                <div class="card bg-primary text-white mb-4">
-                                    <div class="card-body">
-                                    <?php
-                                        echo mysqli_num_rows(mysqli_query($koneksi, "SELECT * FROM kategori")); 
-                                    ?>
-                                    Total Kategori</div>
-                                    <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="small text-white stretched-link" href="#">View Details</a>
-                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xl-3 col-md-6">
-                                <div class="card bg-warning text-white mb-4">
-                                    <div class="card-body">
-                                    <?php
-                                        echo mysqli_num_rows(mysqli_query($koneksi, "SELECT * FROM buku")); 
-                                    ?>    
-                                    Total Buku</div>
-                                    <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="small text-white stretched-link" href="#">View Details</a>
-                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xl-3 col-md-6">
-                                <div class="card bg-success text-white mb-4">
-                                    <div class="card-body">
-                                    <?php
-                                        echo mysqli_num_rows(mysqli_query($koneksi, "SELECT * FROM ulasan")); 
-                                    ?>    
-                                    Total Ulasan</div>
-                                    <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="small text-white stretched-link" href="#">View Details</a>
-                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xl-3 col-md-6">
-                                <div class="card bg-danger text-white mb-4">
-                                    <div class="card-body">
-                                    <?php
-                                        echo mysqli_num_rows(mysqli_query($koneksi, "SELECT * FROM user")); 
-                                    ?>    
-                                    Total User</div>
-                                    <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="small text-white stretched-link" href="#">View Details</a>
-                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+<div class="container py-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h1 class="fw-bold">Discover</h1>
+        </div>
+    </div>
+
+    <div class="row align-items-center mb-5">
+        <div class="col-md-4">
+            <select class="form-select">
+                <option>All Categories</option>
+                <option>Business</option>
+                <option>Self Improvement</option>
+                <option>Design</option>
+            </select>
+        </div>
+        <div class="col-md-6">
+            <input type="text" class="form-control" placeholder="Find the book you like...">
+        </div>
+        <div class="col-md-2">
+            <button class="btn btn-dark w-100"><i class="fas fa-search me-1"></i> Search</button>
+        </div>
+    </div>
+
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h5 class="fw-semibold">Rekomendasi Buku</h5>
+        <a href="#" class="btn btn-sm btn-outline-secondary">View all <i class="fas fa-arrow-right"></i></a>
+    </div>
+
+    <div class="row row-cols-1 row-cols-md-5 g-4 mb-5">
+        <div class="col">
+            <img src="assets/sampul/buku1.jpeg" class="img-fluid rounded shadow-sm" alt="Book 1">
+        </div>
+        <div class="col">
+            <img src="assets/sampul/buku1.jpeg" class="img-fluid rounded shadow-sm" alt="Book 2">
+        </div>
+        <div class="col">
+            <img src="assets/sampul/buku1.jpeg" class="img-fluid rounded shadow-sm" alt="Book 3">
+        </div>
+        <div class="col">
+            <img src="assets/sampul/buku1.jpeg" class="img-fluid rounded shadow-sm" alt="Book 4">
+        </div>
+        <div class="col">
+            <img src="assets/sampul/buku1.jpeg" class="img-fluid rounded shadow-sm" alt="Book 5">
+        </div>
+    </div>
+
+    <h5 class="fw-semibold mb-3">Kategori Buku</h5>
+    <div class="row row-cols-2 row-cols-sm-3 row-cols-md-5 g-4">
+        <div class="col text-center">
+            <img src="assets/sampul/buku1.jpeg" class="img-fluid rounded shadow-sm mb-2" alt="Category 1">
+            <div class="fw-semibold">TEST</div>
+        </div>
+        <div class="col text-center">
+            <img src="assets/sampul/buku1.jpeg" class="img-fluid rounded shadow-sm mb-2" alt="Category 2">
+            <div class="fw-semibold">TEST</div>
+        </div>
+        <div class="col text-center">
+            <img src="assets/sampul/buku1.jpeg" class="img-fluid rounded shadow-sm mb-2" alt="Category 3">
+            <div class="fw-semibold">TEST</div>
+        </div>
+        <div class="col text-center">
+            <img src="assets/sampul/buku1.jpeg" class="img-fluid rounded shadow-sm mb-2" alt="Category 4">
+            <div class="fw-semibold">TEST</div>
+        </div>
+    </div>
+</div>

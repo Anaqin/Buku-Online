@@ -1,62 +1,77 @@
 <?php
-    include "koneksi.php"
+    include "koneksi.php";
+    $login_success = false;
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
+
 <head>
     <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <title>Login</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="https://use.fontawesome.com/releases/v6.3.0/css/all.css" rel="stylesheet" crossorigin="anonymous">
+    <title>Login - Buku Online</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
 </head>
-<body class="bg-primary min-vh-100">
 
-    <div class="container py-5">
-        <div class="row justify-content-center mt-5">
-            <div class="col-md-6 col-lg-5">
-                <div class="card shadow">
-                    <div class="card-body px-4 py-5"> 
-                        <h3 class="text-center text-primary mb-4">Login</h3>
-                        <?php
-                            if(isset($_POST['login'])) {
-                                $username = $_POST['username'];
-                                $password = md5($_POST['password']);
+<body class="bg-secondary d-flex justify-content-center align-items-center min-vh-100">
 
-                                $data = mysqli_query($koneksi, "SELECT*FROM user where username='$username' and password='$password'");
-                                $cek = mysqli_num_rows($data);
-                                if($cek > 0){
-                                    $_SESSION['user'] = mysqli_fetch_array($data);
-                                    echo '<script>alert("Berhasil Login"); location.href="index.php";</script>';
-                                }else {
-                                    echo '<script>alert("username/password salah")</script>';
-                                }
-                            }
-                        ?>    
-                        <form method="post">
-                            <div class="form-floating mb-3">
-                                <input type="text" class="form-control" id="inputUsername" name="username" placeholder="Username" required>
-                                <label for="inputUsername">Username</label>
-                            </div>
-                            <div class="form-floating mb-4">
-                                <input type="password" class="form-control" id="inputPassword" name="password" placeholder="Password" required>
-                                <label for="inputPassword">Password</label>
-                            </div>
-                            <div class="d-grid">
-                                <button type="submit" class="btn btn-primary btn-lg w-100" name="login" value="login">Login</button>
-                            </div>
-                        </form>
+    <div class="bg-white rounded-4 overflow-hidden shadow-lg w-100" style="max-width: 800px; height: 500px;">
+        <div class="row h-100 g-0">
+            <div class="col-md-6 bg-dark text-white d-flex flex-column justify-content-center align-items-center p-5">
+                <h2 class="fw-bold text-center">PERPUSTAKAAN DIGITAL</h2>
+            </div>
+
+            <div class="col-md-6 d-flex flex-column justify-content-center p-5">
+                <h4 class="text-center mb-4 fw-bold">Login</h4>
+                <?php
+                    if (isset($_POST['login'])) {
+                        $username = $_POST['username'];
+                        $password = md5($_POST['password']);
+                        $data = mysqli_query($koneksi, "SELECT * FROM user WHERE username='$username' AND password='$password'");
+                        $cek = mysqli_num_rows($data);
+                        if ($cek > 0) {
+                            $_SESSION['user'] = mysqli_fetch_array($data);
+                            $login_success = true;
+                        } else {
+                            echo '<div class="alert alert-danger text-center py-2">Username atau Password salah!</div>';
+                        }
+                    }
+                ?>
+                <form method="post">
+                    <div class="mb-3">
+                        <input type="text" name="username" class="form-control form-control-sm" placeholder="Username"
+                            required>
                     </div>
-                    <div class="card-footer text-center small text-muted">
-                        &copy; Your Website 2025
+                    <div class="mb-4">
+                        <input type="password" name="password" class="form-control form-control-sm"
+                            placeholder="Password" required>
                     </div>
-                </div>
+                    <div class="d-grid">
+                        <button type="submit" name="login" value="login" class="btn btn-dark btn-sm">Login</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <?php if ($login_success): ?>
+    <div class="position-fixed top-0 start-50 translate-middle-x p-3" style="z-index: 1055;">
+        <div class="toast align-items-center text-bg-dark border-0 show" role="alert">
+            <div class="d-flex">
+                <div class="toast-body text-center w-100 fw-semibold">
+                    Login berhasil! Mengalihkan...
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+    setTimeout(() => {
+        window.location.href = "index.php";
+    }, 2000);
+    </script>
+    <?php endif; ?>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>
