@@ -1,4 +1,4 @@
-<h1 class="mt-4 mb-4 fw-bold text-primary"><i class="fas fa-book me-2"></i>Buku</h1>
+<h1 class="mt-4 mb-4 fw-bold "><i class="fas fa-book me-2"></i>Buku</h1>
 
 <div class="card shadow-sm border-0 rounded-4">
     <div class="card-body p-4">

@@ -1,5 +1,5 @@
-<h1 class="mt-4 fw-bold "><i class="fas fa-comments me-2"></i>Ulasan Buku</h1>
-<div class="d-flex justify-content-end mb-3">
+<h1 class=" fw-bold "><i class="fas fa-comments me-2"></i>Ulasan Buku</h1>
+<div class="d-flex justify-content-end mb-1">
     <a href="?page=ulasan_tambah" class="btn btn-dark px-4 py-2 rounded-3 shadow-sm">
         <i class="fa fa-plus me-2"></i>Tambah Data
     </a>
@@ -56,13 +56,13 @@
                                 class="btn btn-sm btn-primary">
                                 <i class="fas fa-pen-to-square me-1"></i>Ubah
                             </a>
-                            <!-- Tombol trigger modal -->
+
                             <button class="btn btn-sm btn-danger" data-bs-toggle="modal"
                                 data-bs-target="#hapusUlasanModal<?php echo $data['id_ulasan']; ?>">
                                 <i class="fas fa-trash-alt me-1"></i>Hapus
                             </button>
 
-                            <!-- Modal Konfirmasi Hapus -->
+
                             <div class="modal fade" id="hapusUlasanModal<?php echo $data['id_ulasan']; ?>" tabindex="-1"
                                 aria-labelledby="hapusUlasanModalLabel<?php echo $data['id_ulasan']; ?>"
                                 aria-hidden="true">

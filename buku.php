@@ -31,7 +31,7 @@
                         <td><?php echo $i++; ?></td>
                         <td><?php echo $data['kategori']; ?></td>
                         <td class="text-start"><?php echo $data['judul']; ?></td>
-                        <td><?php echo $data['penulis']; ?></td>
+                        <td><?php echo $data['penulis'] ; ?></td>
                         <td><?php echo $data['penerbit']; ?></td>
                         <td><?php echo $data['tahun_terbit']; ?></td>
                         <td class="text-start"><?php echo $data['deskripsi']; ?></td>

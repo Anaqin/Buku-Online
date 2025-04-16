@@ -4,7 +4,6 @@
         header('location:login.php');
     }
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -14,27 +13,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title> Buku Online</title>
+    <title>Buku Online</title>
     <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
     <link href="css/styles.css" rel="stylesheet" />
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body class="sb-nav-fixed">
     <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-        <a class="navbar-brand ps-4 d-flex align-items-center gap-2" style="width:180px" href="index.html">
+        <a class="navbar-brand ps-4 d-flex align-items-center gap-2" style="width:180px" href="index.php">
             <i class="fas fa-book"></i>
             <span>Buku Online</span>
         </a>
-
         <button class="btn btn-link btn-lg order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle">
             <i class="fas fa-bars"></i>
         </button>
     </nav>
     <div id="layoutSidenav">
         <div id="layoutSidenav_nav">
-            <nav class="sb-sidenav accordion sb-sidenav-dark " id="sidenavAccordion">
-                <div class="sb-sidenav-menu ">
+            <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+                <div class="sb-sidenav-menu">
                     <div class="nav">
                         <div class="sb-sidenav-menu-heading text-white">Core</div>
                         <a class="nav-link text-white" href="?">
@@ -43,9 +43,7 @@
                             Discover
                         </a>
                         <div class="sb-sidenav-menu-heading text-white">Navigasi</div>
-                        <?php
-                                if($_SESSION['user']['level'] != 'peminjam'){
-                            ?>
+                        <?php if($_SESSION['user']['level'] != 'peminjam'){ ?>
                         <a class="nav-link text-white" href="?page=kategori">
                             <div class="sb-nav-link-icon text-white"><i class="fas fa-table"></i></div>
                             Kategori
@@ -54,9 +52,7 @@
                             <div class="sb-nav-link-icon text-white"><i class="fas fa-book"></i></div>
                             Buku
                         </a>
-                        <?php
-                                }
-                                    ?>
+                        <?php } ?>
                         <?php if($_SESSION['user']['level'] == 'peminjam') { ?>
                         <a class="nav-link text-white" href="?page=peminjaman">
                             <div class="sb-nav-link-icon text-white"><i class="fas fa-book"></i></div>
@@ -67,17 +63,13 @@
                             <div class="sb-nav-link-icon text-white"><i class="fas fa-comment"></i></div>
                             Ulasan
                         </a>
-                        <?php
-                                if($_SESSION['user']['level'] != 'peminjam'){
-                            ?>
+                        <?php if($_SESSION['user']['level'] != 'peminjam'){ ?>
                         <a class="nav-link text-white" href="?page=laporan">
                             <div class="sb-nav-link-icon text-white"><i class="fas fa-book"></i></div>
                             Laporan Peminjaman
                         </a>
-                        <?php
-                                }
-                         ?>
-                        <a class="nav-link text-white" href="logout.php">
+                        <?php } ?>
+                        <a class="nav-link text-white" href="#" onclick="showLogoutPopup(event)">
                             <div class="sb-nav-link-icon text-white"><i class="fas fa-power-off"></i></div>
                             Logout
                         </a>
@@ -93,13 +85,13 @@
             <main>
                 <div class="container-fluid px-4">
                     <?php
-                            $page = isset($_GET['page']) ? $_GET['page'] : 'home';
-                            if(file_exists($page . '.php')) {
-                                include $page . '.php';
-                            } else {
-                                include '404.php';
-                            }
-                        ?>
+                        $page = isset($_GET['page']) ? $_GET['page'] : 'home';
+                        if(file_exists($page . '.php')) {
+                            include $page . '.php';
+                        } else {
+                            include '404.php';
+                        }
+                    ?>
                 </div>
             </main>
             <footer class="py-4 bg-light mt-auto">
@@ -111,6 +103,7 @@
             </footer>
         </div>
     </div>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous">
     </script>
     <script src="js/scripts.js"></script>
@@ -120,6 +113,26 @@
     <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js"
         crossorigin="anonymous"></script>
     <script src="js/datatables-simple-demo.js"></script>
+
+    <script>
+    function showLogoutPopup(e) {
+        e.preventDefault();
+        Swal.fire({
+            title: 'Konfirmasi Logout',
+            text: 'Apakah Anda yakin ingin logout?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Ya, Logout',
+            cancelButtonText: 'Batal'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = "logout.php";
+            }
+        });
+    }
+    </script>
 </body>
 
 </html>

@@ -1,14 +1,14 @@
-<h1 class="mt-4 fw-bold text-primary"><i class="fas fa-book-reader me-2"></i>Peminjaman Buku</h1>
+<h1 class="mt-4 fw-bold "><i class="fas fa-book-reader me-2"></i>Peminjaman Buku</h1>
 <div class="card shadow rounded-4 border-0">
     <div class="card-body">
         <div class="d-flex justify-content-end mb-3">
-            <a href="?page=peminjaman_tambah" class="btn btn-success px-4 py-2 rounded-3 shadow-sm">
+            <a href="?page=peminjaman_tambah" class="btn btn-dark px-4 py-2 rounded-3 shadow-sm">
                 <i class="fa fa-plus me-2"></i>Tambah Peminjaman
             </a>
         </div>
         <div class="table-responsive">
             <table class="table table-hover table-bordered align-middle text-center" id="dataTable">
-                <thead class="table-primary">
+                <thead class="table-secondary">
                     <tr>
                         <th>No</th>
                         <th>User</th>
