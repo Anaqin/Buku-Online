@@ -63,5 +63,3 @@ Aplikasi **Buku Online** adalah sistem manajemen perpustakaan digital yang memun
 
 ---
 
-## Kontak
-Jika Anda memiliki pertanyaan atau masalah, silakan hubungi tim pengembang melalui email: **admin@gmail.com**.
