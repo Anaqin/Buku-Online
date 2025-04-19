@@ -1,41 +1,39 @@
-<h1 class="mt-4">Kategori Buku</h1>
-<div class="card">
-    <div class="card-body">
-        <div class="row">
-            <div class="col-md-12">
-                <form method="post">
-
-                    <?php
-                    if (isset($_POST['submit'])) {
-                        $kategori = $_POST['kategori'];
-                        $query = mysqli_query($koneksi, "INSERT INTO kategori(kategori) values('$kategori')");
-
-                        if ($query) {
-                            echo '<div class="alert alert-success">Tambah data berhasil</div>';
-                        } else {
-                            echo '<div class="alert alert-danger">Tambah data berhasil</div>';
-                        }
+<div class="container py-3">
+    <h1 class="mt-4 mb-4 fw-bold"><i class="fas fa-layer-group me-2"></i>Tambah Kategori Buku</h1>
+    <div class="card shadow-sm border-0 rounded-4">
+        <div class="card-body p-4">
+            <form method="post">
+                <?php
+                if (isset($_POST['submit'])) {
+                    $kategori = $_POST['kategori'];
+                    $query = mysqli_query($koneksi, "INSERT INTO kategori(kategori) VALUES('$kategori')");
+    
+                    if ($query) {
+                        echo '<div class="alert alert-success">Tambah data berhasil</div>';
+                    } else {
+                        echo '<div class="alert alert-danger">Tambah data gagal</div>';
                     }
-                    ?>
+                }
+                ?>
 
+                <div class="row mb-4">
+                    <label class="col-md-3 col-form-label fw-semibold">Nama Kategori</label>
+                    <div class="col-md-9">
+                        <input type="text" name="kategori" class="form-control shadow-sm" style="width: 50%" required>
+                    </div>
+                </div>
 
-                    <div class="row mb-3">
-                        <div class="col-md-2">Nama Kategori</div>
-                        <div class="col-md-8"><input type="text" name="kategori" class="from-control"
-                                style="width: 50%"></div>
+                <div class="row">
+                    <div class="offset-md-3 col-md-9 d-flex gap-2">
+                        <button type="submit" class="btn btn-primary px-4" name="submit" value="submit">
+                            <i class="fas fa-save me-1"></i> Simpan
+                        </button>
+                        <a href="?page=kategori" class="btn btn-danger px-4">
+                            <i class="fas fa-arrow-left me-1"></i> Kembali
+                        </a>
                     </div>
-                    <div class="row">
-                        <div class="col-md-2">
-                        </div>
-                        <div class="col-md-8">
-                            <button type="submit" href="?page=kategori" class="btn btn-primary" name="submit"
-                                value="submit">Simpan</button>
-                            <button type="reset" class="btn btn-secondary">Reset</button>
-                            <a href="?page=kategori" class="btn btn-danger">Kembali</a>
-                        </div>
-                    </div>
-                </form>
-            </div>
+                </div>
+            </form>
         </div>
     </div>
 

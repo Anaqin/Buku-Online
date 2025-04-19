@@ -1,4 +1,4 @@
-<h1 class="mt-2 fw-bold "><i class="fas fa-tags me-2"></i>Kategori Buku</h1>
+<h1 class="mt-2 fw-bold"><i class="fas fa-tags me-2"></i>Kategori Buku</h1>
 <div class="d-flex justify-content-end mb-3">
     <a href="?page=kategori_tambah" class="btn btn-dark px-4 py-2 rounded-3 shadow-sm">
         <i class="fas fa-plus me-2"></i>Tambah Kategori
@@ -29,22 +29,19 @@
                                 class="btn btn-sm btn-primary">
                                 <i class="fas fa-pen-to-square me-1"></i>Ubah
                             </a>
-                            <!-- Tombol trigger modal -->
                             <button class="btn btn-sm btn-danger" data-bs-toggle="modal"
-                                data-bs-target="#hapusKategoriModal<?php echo $data['id_kategori']; ?>">
+                                data-bs-target="#hapusModal<?php echo $data['id_kategori']; ?>">
                                 <i class="fas fa-trash-alt me-1"></i>Hapus
                             </button>
 
                             <!-- Modal Konfirmasi Hapus -->
-                            <div class="modal fade" id="hapusKategoriModal<?php echo $data['id_kategori']; ?>"
-                                tabindex="-1"
-                                aria-labelledby="hapusKategoriModalLabel<?php echo $data['id_kategori']; ?>"
-                                aria-hidden="true">
+                            <div class="modal fade" id="hapusModal<?php echo $data['id_kategori']; ?>" tabindex="-1"
+                                aria-labelledby="hapusModalLabel<?php echo $data['id_kategori']; ?>" aria-hidden="true">
                                 <div class="modal-dialog modal-dialog-centered">
                                     <div class="modal-content rounded-4">
                                         <div class="modal-header bg-danger text-white">
                                             <h5 class="modal-title"
-                                                id="hapusKategoriModalLabel<?php echo $data['id_kategori']; ?>">
+                                                id="hapusModalLabel<?php echo $data['id_kategori']; ?>">
                                                 <i class="fas fa-triangle-exclamation me-2"></i>Konfirmasi Hapus
                                             </h5>
                                             <button type="button" class="btn-close btn-close-white"
@@ -63,6 +60,7 @@
                                     </div>
                                 </div>
                             </div>
+
                         </td>
                     </tr>
                     <?php } ?>
@@ -71,3 +69,29 @@
         </div>
     </div>
 </div>
+
+<?php if (isset($_GET['error']) && $_GET['error'] === 'kategori_dipakai'): ?>
+<!-- Modal error jika kategori sedang dipakai -->
+<div class="modal fade" id="errorModal" tabindex="-1" aria-labelledby="errorModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content rounded-4">
+            <div class="modal-header bg-warning text-dark">
+                <h5 class="modal-title" id="errorModalLabel">
+                    <i class="fas fa-circle-exclamation me-2"></i>Kategori Sedang Digunakan
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
+            </div>
+            <div class="modal-body">
+                Kategori ini tidak dapat dihapus karena masih digunakan oleh satu atau lebih buku.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary rounded-3" data-bs-dismiss="modal">Tutup</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+var errorModal = new bootstrap.Modal(document.getElementById('errorModal'));
+errorModal.show();
+</script>
+<?php endif; ?>
