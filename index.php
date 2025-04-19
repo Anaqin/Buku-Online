@@ -8,6 +8,7 @@ if (!isset($_SESSION['user'])) {
 }
 ?>
 
+<!-- TESTIMG -->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -82,7 +83,7 @@ if (!isset($_SESSION['user'])) {
                         </a>
                         <a class="nav-link text-white" href="?page=peminjaman_admin">
                             <div class="sb-nav-link-icon"><i class="fas fa-check-circle"></i></div>
-                            Peminjaman Admin
+                            Konfirmasi Peminjaman
                         </a>
                         <?php } ?>
 

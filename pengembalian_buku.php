@@ -6,17 +6,28 @@ if (isset($_GET['kembalikan'])) {
     $id_peminjaman = intval($_GET['kembalikan']);
     $tanggal_pengembalian = date('Y-m-d');
 
+    $result = mysqli_query($koneksi, "SELECT id_buku FROM peminjaman WHERE id_peminjaman = $id_peminjaman");
+    $row = mysqli_fetch_assoc($result);
+    $id_buku = $row['id_buku'];
+
     $update = mysqli_query($koneksi, "UPDATE peminjaman 
         SET status_peminjaman = 'dikembalikan', 
             tanggal_pengembalian = '$tanggal_pengembalian' 
         WHERE id_peminjaman = $id_peminjaman");
 
     if ($update) {
-        echo '<div class="alert alert-success">Buku berhasil dikembalikan.</div>';
+        $updateStok = mysqli_query($koneksi, "UPDATE buku SET stok = stok + 1 WHERE id_buku = $id_buku");
+
+        if ($updateStok) {
+            echo '<div class="alert alert-success">Buku berhasil dikembalikan dan stok diperbarui.</div>';
+        } else {
+            echo '<div class="alert alert-warning">Buku berhasil dikembalikan, tapi gagal memperbarui stok.</div>';
+        }
     } else {
         echo '<div class="alert alert-danger">Gagal mengembalikan buku.</div>';
     }
 }
+
 
 $id_user = $_SESSION['user']['id_user'];
 $query = mysqli_query($koneksi, "SELECT p.*, b.judul 
@@ -85,13 +96,12 @@ $query = mysqli_query($koneksi, "SELECT p.*, b.judul
                                     ?>
                                 </td>
                                 <td>
-                                    <!-- Tombol untuk memicu modal -->
+
                                     <button class="btn btn-success btn-sm px-3 rounded-pill" data-bs-toggle="modal"
                                         data-bs-target="#kembalikanModal<?php echo $data['id_peminjaman']; ?>">
                                         <i class="fas fa-check-circle me-1"></i> Kembalikan
                                     </button>
 
-                                    <!-- Modal untuk konfirmasi pengembalian -->
                                     <div class="modal fade" id="kembalikanModal<?php echo $data['id_peminjaman']; ?>"
                                         tabindex="-1"
                                         aria-labelledby="kembalikanModalLabel<?php echo $data['id_peminjaman']; ?>"

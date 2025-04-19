@@ -15,11 +15,30 @@ if (isset($_GET['action']) && isset($_GET['id'])) {
         $_SESSION['message'] = $update ? "Peminjaman berhasil disetujui." : "Gagal menyetujui: " . mysqli_error($koneksi);
         $_SESSION['message_type'] = $update ? "success" : "danger";
     } elseif ($action === 'ditolak') {
+
+        $result = mysqli_query($koneksi, "SELECT id_buku FROM peminjaman WHERE id_peminjaman = $id_peminjaman");
+        $row = mysqli_fetch_assoc($result);
+        $id_buku = $row['id_buku'];
+    
         $queryUpdate = "UPDATE peminjaman SET status_peminjaman = 'ditolak' WHERE id_peminjaman = $id_peminjaman";
         $update = mysqli_query($koneksi, $queryUpdate);
-        $_SESSION['message'] = $update ? "Peminjaman berhasil ditolak." : "Gagal menolak: " . mysqli_error($koneksi);
-        $_SESSION['message_type'] = $update ? "warning" : "danger";
+    
+        if ($update) {
+            $updateStok = mysqli_query($koneksi, "UPDATE buku SET stok = stok + 1 WHERE id_buku = $id_buku");
+    
+            if ($updateStok) {
+                $_SESSION['message'] = "Peminjaman berhasil ditolak dan stok buku telah ditambahkan.";
+                $_SESSION['message_type'] = "warning";
+            } else {
+                $_SESSION['message'] = "Peminjaman ditolak, tetapi gagal menambahkan stok buku: " . mysqli_error($koneksi);
+                $_SESSION['message_type'] = "danger";
+            }
+        } else {
+            $_SESSION['message'] = "Gagal menolak peminjaman: " . mysqli_error($koneksi);
+            $_SESSION['message_type'] = "danger";
+        }
     }
+     
 
     echo "<script>window.location.href='index.php?page=peminjaman_admin';</script>";
     exit();

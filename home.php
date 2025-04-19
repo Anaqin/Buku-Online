@@ -8,7 +8,7 @@
     <form method="GET" class="row align-items-center mb-5">
         <input type="hidden" name="page" value="home">
         <div class="col-md-10">
-            <input type="text" name="cari" class="form-control" placeholder="Find the book you like..."
+            <input type="text" name="cari" class="form-control" placeholder="Cari buku yang anda sukai!"
                 value="<?php echo isset($_GET['cari']) ? htmlspecialchars($_GET['cari']) : ''; ?>">
         </div>
         <div class="col-md-2">
